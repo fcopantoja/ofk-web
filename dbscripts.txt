@@ -1,0 +1,101 @@
+create database ofk;
+
+CREATE USER 'ofkdesigns'@'localhost' IDENTIFIED BY 'ofkdesigns2013';
+GRANT ALL PRIVILEGES ON *.* TO ofkdesigns@'localhost' IDENTIFIED BY 'ofkdesigns2013';
+
+use ofk;
+
+CREATE TABLE users(
+id INT NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(id),
+username VARCHAR(30) NOT NULL,
+password VARCHAR(20) NOT NULL,
+email VARCHAR(40) NOT NULL)
+ENGINE=InnoDB;
+
+
+insert into users(username, password,email) values('admin', 'adminofk2013','contacto@ofkdesigns.com');
+
+
+CREATE TABLE categories(
+id INT NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(id),
+name VARCHAR(50) NOT NULL,
+created_at DATETIME DEFAULT NULL)
+ENGINE=InnoDB;
+
+
+insert into categories(name,created_at) values('Muebles OFK', NOW());
+insert into categories(name,created_at) values('Muebles reinterpretados', NOW());
+insert into categories(name,created_at) values('Muebles personalizados', NOW());
+insert into categories(name,created_at) values('Accesorios OFK', NOW());
+insert into categories(name,created_at) values('Accesorios reinterpretados', NOW());
+insert into categories(name,created_at) values('Accesorios personalizados', NOW());
+
+
+CREATE TABLE products(
+id INT NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(id),
+name VARCHAR(80) NOT NULL,
+title VARCHAR(100) NOT NULL,
+description TEXT,
+tags TEXT,
+dimensions VARCHAR(30),
+price DECIMAL(5,2) NOT NULL,
+cat_id INT NOT NULL,
+created_at DATETIME DEFAULT NULL,
+FOREIGN KEY (cat_id) 
+REFERENCES categories(id) 
+)
+ENGINE=InnoDB;
+
+
+
+CREATE TABLE home_slideshow(
+id INT NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(id),
+image_url TEXT NOT NULL,
+product_id INT NOT NULL,
+created_at DATETIME DEFAULT NULL,
+FOREIGN KEY (product_id) 
+REFERENCES products(id) 
+)
+ENGINE=InnoDB;
+
+
+CREATE TABLE config_param(
+id INT NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(id),
+param_key VARCHAR(80) NOT NULL,
+param_value VARCHAR(300) NOT NULL
+)
+ENGINE=InnoDB;
+
+
+CREATE TABLE images(
+id INT NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(id),
+image_url TEXT NOT NULL,
+preview_url TEXT NOT NULL,
+product_id INT NOT NULL,
+FOREIGN KEY (product_id) 
+REFERENCES products(id) 
+)
+ENGINE=InnoDB;
+
+CREATE TABLE visits(
+id INT NOT NULL AUTO_INCREMENT,
+PRIMARY KEY(id),
+created_at DATETIME NOT NULL,
+page_url TEXT NOT NULL,
+remote_ip TEXT NOT NULL
+)
+ENGINE=InnoDB;
+
+
+!--insert into config_param(param_key, param_value) values('SERVER.URL', 'http://localhost/ofk/muebles/');
+!--insert into config_param(param_key, param_value) values('UPLOADED.FILES.DIR', 'upload/');
+
+insert into config_param(param_key, param_value) values('SERVER.URL', 'http://98.129.169.147/muebles/');
+insert into config_param(param_key, param_value) values('UPLOADED.FILES.DIR', 'upload/');
+

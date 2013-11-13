@@ -1,0 +1,113 @@
+/* Menu CSS */#cssmenu,
+#cssmenu > ul {
+  background: #2f353f /*url(../images/pedazo_barra.png)*/;
+  background-repeat:repeat-x;
+  font-weight: 600;
+  float:left;
+  height:75px;
+  font-size:16px;
+  margin:0px;
+  border:none;
+  border-style:none;
+}
+#cssmenu:before,
+#cssmenu:after,
+#cssmenu > ul:before,
+#cssmenu > ul:after {
+  content: '';
+  display: table;
+}
+#cssmenu:after,
+#cssmenu > ul:after {
+  clear: both;
+}
+
+#cssmenu {
+  width: 748px;
+}
+#cssmenu > ul {
+  
+}
+#cssmenu > ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  padding-right: 50px;
+}
+#cssmenu > ul > li {
+  float: left;
+  position: relative;
+  padding-top:20px;
+}
+#cssmenu > ul > li > a {
+  /*padding: 23px 26px;*/
+  display: block;
+  color: white;
+  font-size: 16px;
+  color:rgba(255,255,255,0.5);
+  text-decoration: none;
+  text-transform: uppercase;
+  text-shadow: 0 -1px 0 #0d0d0d;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+  line-height: 18px;
+}
+#cssmenu > ul > li:hover > a {
+  color: #fff;
+  text-shadow: 0 -1px 0 #fff;
+  text-shadow: 0 -1px 0 rgba(122, 42, 26, 0.64);
+}
+#cssmenu > ul > li > a > span {
+  line-height: 18px;
+}
+#cssmenu > ul > li.active > a,
+
+/* Childs */
+#cssmenu > ul ul {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 120px;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+  width:600px;
+  float:left;
+}
+#cssmenu > ul li:hover ul {
+  opacity: 1;
+  visibility: visible;
+  margin: 0;
+  color: #000;
+  z-index: 2;
+  top: 24px;
+  left: 0;
+}
+#cssmenu > ul ul:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  width: 20%;
+  height: 20px;
+  background: transparent;
+}
+#cssmenu > ul ul li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  float:left;
+}
+#cssmenu > ul ul li a {
+  padding: 18px 2px;
+  display: block;
+  color:rgba(255,255,255,0.5);
+  font-size: 13px;
+  text-decoration: none;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+#cssmenu > ul ul li a:hover {
+  color: white;
+}
+

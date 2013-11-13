@@ -1,0 +1,48 @@
+ #container {
+         width: 1024px;
+         height: 600px;
+         position: relative;
+         }
+         #carousel {
+         position: absolute;
+         top: 50px;
+         }
+         #carousel img {
+         border: 0;
+         }
+         #ui-carousel-next, #ui-carousel-prev {
+         width: 100px;
+         height: 50px;
+         background: url(../images/arrow-bottom.png) #fff center center no-repeat;
+         display: block;
+         position: absolute;
+         left: 0
+         z-index: 100;
+         }
+         #ui-carousel-next {
+         top: 0;
+         background-image: url(../images/arrow-top.png);
+         }
+         #ui-carousel-prev {
+         bottom: 100px;
+         }
+         #ui-carousel-next > span, #ui-carousel-prev > span {
+         display: none;
+         }
+         #pages {
+         width: 30px;
+         height: 18px;
+         margin: 5px auto 0 auto;
+         position:relative;
+         top:250px;
+         right:440px;
+         }
+         .bullet {
+         background: url(../images/slideshow_blanco.png) center center no-repeat;
+         display: block;
+         width: 25px;
+         height: 25px;
+         margin: 0;
+         margin-right: 2px;
+         float: left;				
+         }	
