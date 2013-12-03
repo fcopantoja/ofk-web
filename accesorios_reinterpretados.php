@@ -35,13 +35,14 @@ $( document ).ready(function() {
     $id = $data['id'];
     $cat_description = $data['description'];
     $cat_name = $data['name'];
+    $image_uri = $data['image_uri'];
     
     include 'header.php';
           
    ?>
    <div class="muebles-separator"></div>
    <div class="muebles-container">
-      <img src="images/muebles.jpg"/>
+      <img src="<?php echo $image_uri;?>"/>
       <div class="cat-separator"></div>
       <div class="cat-main-container" align="center">
          <div class="cat-description" id="cat-description">

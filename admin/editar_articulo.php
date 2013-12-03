@@ -61,7 +61,7 @@ var description = document.forms["articleForm"]["description"].value;
 			</div>
 			<div class="module_content">
 				<fieldset>
-					<label>Descripci&oacute;n <?php echo str_replace('<br />',"\n", $description)?></label>
+					<label>Descripci&oacute;n </label>
 					<textarea name="description" rows="12"><?php echo str_replace('<br />',"\n", $description)?></textarea>
 				</fieldset>
 

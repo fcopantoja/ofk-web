@@ -2,6 +2,7 @@
 <html>
    <head>
       <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="description" content="Diseño y fabricación de mobiliario y accesorios de decoración">
       <meta name="keywords" content="muebles, personalizados, accesorios, diseños, ofk">
       <title>Inicio | OFK</title>
       
@@ -28,7 +29,7 @@
                   		while ($row = mysql_fetch_assoc($sql)) {
 							$image_url = $row['image_url'];
                    			$product_id = $row['product_id'];
-               				echo "<a href='detalle.php?article=1'><img src='$image_url'/></a>";
+               				echo "<a href='detalle.php?article=1'><img class='slideshow-img' src='$image_url'/></a>";
                			}
                   ?>			
             </div>
@@ -39,6 +40,26 @@
       </div>
       <script type="text/javascript">
          jQuery(function($) {
+         
+         var slideshowHeight = 543;
+                  
+         /*if ($( window ).height() < 610){
+         	$('.slideshow-img').height(343);
+         	$('#pages').css('top','180px');
+         	$('#pages').css('right','280px');
+         	$('#container').css('height','353px');
+         	$('.footer-class2').css('margin-top','-128px');
+         	$('.footer-class2').css('height','128px');
+         	slideshowHeight = 343;
+         } 
+         else if($( window ).height() < 700){
+         	$('.slideshow-img').height(343);
+         	$('#pages').css('top','180px');
+         	$('#pages').css('right','280px');
+         	$('#container').css('height','353px');
+         	slideshowHeight = 343;
+         }*/
+         
          
          	function generatePages() {
          		var _total, i, _link;
@@ -99,7 +120,7 @@
 					direction: "next"
          		},
          		width: 1024,
-         		height: 543,
+         		height: slideshowHeight,
          		start: generatePages,
 				pageLoaded: pageLoaded				
          	});				

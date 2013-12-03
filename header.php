@@ -79,7 +79,7 @@
             </li>
             <li class='last'><a id="nosotroslabel" href='nosotros.php'><span>NOSOTROS</span></a></li>
             <li class='last' style="padding-right:25px;"><a id="contactlabel" href='contacto.php'><span>CONTACTO</span></a></li>
-            <li style="padding-left: 10px; padding-right: 10px" class="fb"><a href='#'><img src="images/FB.png" /></a></li>
+            <li style="padding-left: 10px; padding-right: 10px" class="fb"><a href='https://www.facebook.com/pages/One-of-a-Kind-OFK/500628156685070' target="_blank"><img src="images/FB.png" /></a></li>
             <li style="padding-right: 10px" class="twitter"><a href='http://twitter.com/OFK_oneofakind' target="_blank"><img src="images/TWITTER.png" /></a></li>
             <li style="padding-right: 10px" class="ig"><a href='http://instagram.com/OFK_oneofakind' target="_blank"><img src="images/IG.png" /></a></li>
             <li style="padding-right: 10px" class="pin"><a href='http://www.pinterest.com/OFKoneofakind' target="_blank"><img src="images/PINTEREST.png" /></a></li>

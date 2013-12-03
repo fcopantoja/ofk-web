@@ -15,10 +15,14 @@
    		$sql = mysql_query("SELECT param_value FROM config_param where param_key = 'US.TEXT.DESCRIPTION'");
    		$data = mysql_fetch_assoc($sql);
    		$us_text = $data['param_value'];
+   		
+   		$sql = mysql_query("SELECT param_value FROM config_param where param_key = 'US.BACKGROUND.IMAGE.URI'");
+   		$data = mysql_fetch_assoc($sql);
+   		$us_image = $data['param_value'];
    	?>
 
    <div class="us-separator"></div>
-   <div class="us-container">
+   <div class="us-container" style="background-image:url(<?php echo $us_image;?>);">
       <div class="us-child-container">
          <span class="us-title">ONE OF A KIND</span	>
          <br><br>

@@ -74,7 +74,7 @@ function confirmDelete(id){
 			<div class="module_content">
 				<fieldset>
 					<label>Imagen</label>
-					<div style="color:red">Aseg&uacute;rese de que la imagen sea de <strong>1024px</strong> de alto por <strong>543px</strong> de ancho en formato .jpg</div>
+					<div style="color:red">Aseg&uacute;rese de que la imagen sea de <strong>1024px</strong> de alto por <strong>500px</strong> de ancho en formato .jpg</div>
 					<input type="file" name="file" id="file">
 				</fieldset>
 

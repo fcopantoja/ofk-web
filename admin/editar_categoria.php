@@ -21,11 +21,12 @@ var description = document.forms["categoryForm"]["description"].value;
     $id = $data['id'];
     $name = $data['name'];
     $description = $data['description'];
+    $image_uri = $data['image_uri'];
 ?>
 <section id="main" class="column">
 
 	<article class="module width_full">
-		<form action="categorias.php" name="categoryForm" method="POST" onsubmit="return validateForm()">
+		<form action="categorias.php" name="categoryForm" method="POST" onsubmit="return validateForm()" enctype="multipart/form-data">
 			<input type="hidden" name="id" value="<?php echo $id?>"
 			<header>
 				<h3>Editar categor&iacute;a</h3>
@@ -40,6 +41,20 @@ var description = document.forms["categoryForm"]["description"].value;
 				<fieldset>
 					<label>Descripci&oacute;n</label>
 					<textarea name="description" rows="12"><?php echo str_replace('<br />',"\n", $description)?></textarea>
+				</fieldset>
+
+			</div>
+			<div class="module_content" style="text-align:center">
+				<fieldset>
+					<label>Imagen</label>
+					<img src='<?php echo $image_uri?>' style="max-width:800px;"/>
+				</fieldset>
+			</div>
+			<div class="module_content">
+				<fieldset>
+					<label>Cambiar imagen</label>
+					<div style="color:red">Imagen de <strong>282px</strong> de alto por <strong>1024px</strong> de ancho en formato .jpg</div>
+            		<input type="file" name="upload[]" id="file">
 				</fieldset>
 
 			</div>

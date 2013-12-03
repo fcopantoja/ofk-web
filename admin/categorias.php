@@ -26,6 +26,22 @@ function confirmDelete(cat_id){
 <section id="main" class="column">
 
 	<?php
+	
+		
+function reArrayFiles(&$file_post)
+{
+    $file_ary   = array();
+    $file_count = count($file_post['name']);
+    $file_keys  = array_keys($file_post);
+    for ($i = 0; $i < $file_count; $i++) {
+        foreach ($file_keys as $key) {
+            $file_ary[$i][$key] = $file_post[$key][$i];
+        }
+    }
+    
+    return $file_ary;
+}
+	
 		if($_GET["delete"]){
 			$cat_id = $_GET["delete"];
 			$sql = "delete from categories where id =".$cat_id;
@@ -42,17 +58,51 @@ function confirmDelete(cat_id){
 			$id = $_POST["id"];
 			$name = htmlentities($_POST["name"],ENT_NOQUOTES,'UTF-8',false);
 			$description = htmlentities($_POST["description"],ENT_NOQUOTES,'UTF-8',false);
-			$sql = "update categories set name='$name', description='$description' where id = $id";	
+			
+			if ($_FILES['upload'] && sizeof($_FILES['upload']) > 0) {
+    			$file_ary = reArrayFiles($_FILES['upload']);
+	    		$sql = mysql_query("SELECT * FROM config_param WHERE param_key='UPLOADED.FILES.DIR'");
+    			$row = mysql_fetch_array($sql);
+    			$dir = $row['param_value'];
+        
+    			$sql        = mysql_query("SELECT * FROM config_param WHERE param_key='SERVER.URL'");
+	    		$row        = mysql_fetch_array($sql);
+    			$server_url = $row['param_value'];
+    
+    			$image_uri   = $server_url . $dir . $file_ary[0]["name"];
+    			move_uploaded_file($file_ary[0]["tmp_name"], "../" . $dir . $file_ary[0]["name"]);			
+
+    		}
+			
+			
+			$sql = "update categories set name='$name', description='$description', image_uri='$image_uri' where id = $id";	
 			mysql_query($sql);		
 			echo "<h4 class='alert_success'>La categor&iacute;a $name ha sido actualizada</h4>";
 		
 		} else if(isset($_POST['name']) ){
 			$name = htmlentities($_POST["name"],ENT_NOQUOTES,'UTF-8',false);
 			$description = htmlentities($_POST["description"],ENT_NOQUOTES,'UTF-8',false);
-			$sql = "insert into categories(name,description,created_at) values('$name', '$description', NOW())";	
+
+			if ($_FILES['upload'] && sizeof($_FILES['upload']) > 0) {
+    			$file_ary = reArrayFiles($_FILES['upload']);
+	    		$sql = mysql_query("SELECT * FROM config_param WHERE param_key='UPLOADED.FILES.DIR'");
+    			$row = mysql_fetch_array($sql);
+    			$dir = $row['param_value'];
+        
+    			$sql        = mysql_query("SELECT * FROM config_param WHERE param_key='SERVER.URL'");
+	    		$row        = mysql_fetch_array($sql);
+    			$server_url = $row['param_value'];
+    
+    			$image_uri   = $server_url . $dir . $file_ary[0]["name"];
+    			move_uploaded_file($file_ary[0]["tmp_name"], "../" . $dir . $file_ary[0]["name"]);			
+
+    		}
+    
+			$sql = "insert into categories(name,description,created_at,image_uri) values('$name', '$description', NOW(), '$image_uri')";	
 			mysql_query($sql);		
 			echo "<h4 class='alert_success'>La categor&iacute;a $name ha sido creada</h4>";
 		}
+		
 	?>
 	
 	<article class="module width_full">
@@ -68,8 +118,9 @@ function confirmDelete(cat_id){
 						<tr>
 							<th>Nombre</th>
 							<th>Descripci&oacute;n</th>
+							<th>Imagen</th>
 							<th>Creado el</th>
-							<th>Eliminar</th>
+							<th>Acci&oacute;n</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -81,9 +132,11 @@ function confirmDelete(cat_id){
         					$description = $row['description'];
         					$created_at = $row['created_at'];
         					$categoryId = $row['id'];
+        					$image_uri = $row['image_uri'];
         					echo "<tr>
         							<td><strong>$name</strong>
         							</td><td>$description</td>
+        							<td><a href='$image_uri' target='_blank'><img src='$image_uri' height='40px'/></a></td>
         							<td>$created_at</td>
         							<td>
         								<a onclick=\"confirmDelete($categoryId)\" '><input type='image' src='../images/icn_trash.png' title='Trash'></a>
@@ -102,7 +155,7 @@ function confirmDelete(cat_id){
 	<!-- end of content manager article -->
 	
 	<article class="module width_full">
-			<form action="categorias.php" name="categoryForm" method="POST" onsubmit="return validateForm()">
+			<form action="categorias.php" name="categoryForm" method="POST" onsubmit="return validateForm()" enctype="multipart/form-data">
 			<header><h3>Agregar nueva categor&iacute;a</h3></header>
 				<div class="module_content">
 						<fieldset>
@@ -113,7 +166,11 @@ function confirmDelete(cat_id){
 							<label>Descripci&oacute;n</label>
 							<input type="text" maxLength="300" name="description">
 						</fieldset>
-						
+						<fieldset>
+               				<label>Imagen</label>
+			               <div style="color:red">Imagen de <strong>282px</strong> de alto por <strong>1024px</strong> de ancho en formato .jpg</div>
+            			   <input type="file" name="upload[]" id="file">
+			            </fieldset>			
 				</div>
 			<footer>
 				<div class="submit_link">

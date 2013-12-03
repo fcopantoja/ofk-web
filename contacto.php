@@ -14,9 +14,13 @@
   		$sql = mysql_query("SELECT param_value FROM config_param where param_key = 'CONTACT.TEXT.DESCRIPTION'");
    		$data = mysql_fetch_assoc($sql);
    		$contact_text = $data['param_value']; 
+   		
+   		$sql = mysql_query("SELECT param_value FROM config_param where param_key = 'CONTACT.BACKGROUND.IMAGE.URI'");
+   		$data = mysql_fetch_assoc($sql);
+   		$contact_image = $data['param_value'];
   	?>
    <div class="contact-separator"></div>
-   <div class="contact-container">
+   <div class="contact-container" style="background-image:url(<?php echo $contact_image;?>);">
       <div class="contact-child-container">
          <span class="contact-title">CONTACTO</span>
          <br><br>

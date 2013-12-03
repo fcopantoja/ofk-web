@@ -30,8 +30,11 @@ if ($_FILES['upload'] && sizeof($_FILES['upload']) > 0) {
     $server_url = $row['param_value'];
     
     $image_url   = $server_url . $dir . $file_ary[0]["name"];
+    $preview_url = $server_url . $dir . $file_ary[1]["name"];
+    $description = htmlentities($_POST["description"],ENT_QUOTES,'UTF-8');
     
     move_uploaded_file($file_ary[0]["tmp_name"], "../" . $dir . $file_ary[0]["name"]);
+    move_uploaded_file($file_ary[1]["tmp_name"], "../" . $dir . $file_ary[1]["name"]);
     
     $sql = "insert into images(image_url, preview_url, product_id, caption) values('$image_url', '$preview_url', $product_id, '$description')";
     mysql_query($sql);
