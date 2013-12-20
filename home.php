@@ -25,11 +25,11 @@
             <div id="carousel">
                <?php include 'connection.php'; ?>
                <?php
-                  $sql = mysql_query("SELECT * FROM home_slideshow");
+                  $sql = mysql_query("SELECT * FROM home_slideshow ORDER BY created_at DESC");
                   		while ($row = mysql_fetch_assoc($sql)) {
 							$image_url = $row['image_url'];
                    			$product_id = $row['product_id'];
-               				echo "<a href='detalle.php?article=1'><img class='slideshow-img' src='$image_url'/></a>";
+               				echo "<a href='detalle.php?article=$product_id'><img class='slideshow-img' src='$image_url'/></a>";
                			}
                   ?>			
             </div>
@@ -41,7 +41,7 @@
       <script type="text/javascript">
          jQuery(function($) {
          
-         var slideshowHeight = 543;
+         var slideshowHeight = 500;
                   
          /*if ($( window ).height() < 610){
          	$('.slideshow-img').height(343);

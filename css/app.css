@@ -197,7 +197,7 @@ margin:0 auto;
 .contact-container {
 background-image:url(../images/fondo_contacto.jpg);
 background-repeat:no-repeat;
-height:400px;
+height:360px;
 padding-top:140px;
 width:1024px;
 margin:0 auto;
@@ -211,7 +211,7 @@ margin:50px 60px 0 450px;
 .us-container {
 background-image:url(../images/fondo_nosotros.jpg);
 background-repeat:no-repeat;
-height:400px;
+height:360px;
 padding-top:140px;
 width:1024px;
 margin:0 auto;
@@ -440,7 +440,7 @@ font-size:16px;
 }
 
 .footer-class1{
-	padding-bottom:158px
+	padding-bottom:145px
 }
 
 .footer-class2{

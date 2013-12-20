@@ -82,7 +82,7 @@ $sql   = mysql_query("SELECT * FROM products WHERE cat_id = $cat_id limit $offse
 $total = 0;
 while ($row = mysql_fetch_assoc($sql)) {
     $id   = $row['id'];
-    $sql2 = mysql_query("SELECT * FROM images WHERE product_id = $id LIMIT 1");
+    $sql2 = mysql_query("SELECT * FROM images WHERE product_id = $id AND is_principal = 1");
     
     if (mysql_num_rows($sql2) > 0) {
         
